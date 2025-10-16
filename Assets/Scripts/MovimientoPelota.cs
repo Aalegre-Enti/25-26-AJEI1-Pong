@@ -3,6 +3,9 @@ using UnityEngine;
 public class MovimientoPelota : MonoBehaviour
 {
     public float speed;
+    //Para comunicar dos scripts entre sí, el que se quiera comunicar necesita una
+    //variable publica para guardar un "acceso directo" al script externo
+    public GameManager manager;
     Vector3 direccion;
     void Start()
     {
@@ -27,11 +30,13 @@ public class MovimientoPelota : MonoBehaviour
         if (collision.name == "PorteriaA")
         {
             Debug.Log("Jugador B ha marcado");
+            manager.puntB = manager.puntB + 1;
             Spawn();
         }
         if (collision.name == "PorteriaB")
         {
             Debug.Log("Jugador A ha marcado");
+            manager.puntA = manager.puntA + 1;
             Spawn();
         }
     }
